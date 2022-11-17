@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
+import socketIo from 'socket.io-client';
 import './App.css';
 
+const socket = socketIo("http://localhost:3003/", {
+    withCredentials: true,
+});
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [messages, setMessages] = useState<string[]>([])
+    const [text, setText] = useState('')
+
+    const messageHandller=()=>{
+        socket.emit('chat message', text)
+        setText('')
+    }
+
+
+    useEffect(() => {
+        socket.on('chat message', (msg) =>{
+            setMessages([...messages,msg])
+        });
+    })
+
+
+    return (
+        <div className="App">
+            <div className='block'>
+                {messages.map(m =>
+                    <div key={m}>
+                        {m}
+                        <hr/>
+                    </div>
+                )}
+            </div>
+            <div className='sendArea'>
+                <textarea value={text} onChange={(e) => setText(e.currentTarget.value)}></textarea>
+                <button onClick={messageHandller}>add </button>
+            </div>
+        </div>
+    );
 }
 
 export default App;
