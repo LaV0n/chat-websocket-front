@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {KeyboardEvent, useEffect, useState} from 'react';
 import socketIo from 'socket.io-client';
 import './App.css';
 
@@ -14,8 +14,16 @@ type MessageType = {
 function App() {
     const [messages, setMessages] = useState<MessageType[]>([])
     const [text, setText] = useState('')
+    const [user, setUser] = useState<string>('')
+    const [value, setValue] = useState<string>('')
+    const [editUser, setEditUser] = useState<boolean>(false)
 
-    let user = "123"
+    const scrollDown = () => {
+        const elem = document.getElementById('block');
+        if (elem) {
+            elem.scrollTop = elem.scrollHeight;
+        }
+    }
 
     const messageHandler = () => {
         let msg = {message: text, user} as MessageType
@@ -24,6 +32,17 @@ function App() {
         setText('')
     }
 
+    const enterPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === 'Enter') {
+            messageHandler()
+        }
+    }
+
+    const setUserHandler = () => {
+        setUser(value)
+        setValue('')
+        setEditUser(true)
+    }
 
     useEffect(() => {
         socket.on('receive-message', (msg: MessageType) => {
@@ -31,30 +50,46 @@ function App() {
             console.log('your id' + socket.id)
             setMessages([...messages, msg])
         });
-        /*    window.setInterval(function() {
-                const elem = document.getElementById('block');
-                if(elem){
-                    elem.scrollTop = elem.scrollHeight;
-                }
-            }, 1000);*/
+
     })
 
+    scrollDown()
 
     return (
         <div className="App">
-            <div className='messages'>
-                <div className='block' id={'block'}>
-                    {messages.map((m, index) =>
-                        <div key={index} className={'message'}>
-                            <span>{m.user}----</span>
-                            {m.message}
-                            <hr/>
+            <div className='window'>
+                <div>
+                    {editUser
+                        ? <div onDoubleClick={()=>setEditUser(false)}>{user}</div>
+                        : <div>
+                            <input value={value}
+                                   onChange={(e) => setValue(e.currentTarget.value)
+                                   }/>
+                            <button onClick={setUserHandler}>user</button>
                         </div>
-                    )}
+                    }
+
                 </div>
-                <div className='sendArea'>
-                    <textarea value={text} onChange={(e) => setText(e.currentTarget.value)}></textarea>
-                    <button onClick={messageHandler}>send</button>
+                <div className='messages'>
+                    <div className='block' id={'block'}>
+                        {messages.map((m, index) =>
+                            <div key={index} className={'message'}>
+                                <span>{m.user}----</span>
+                                {m.message}
+                                <hr/>
+                            </div>
+                        )}
+                    </div>
+                    <div className='sendArea'>
+                    <textarea value={text}
+                              onChange={(e) => setText(e.currentTarget.value)}
+                              onKeyDown={enterPressHandler}>
+
+                    </textarea>
+                        <button onClick={messageHandler}
+                        >send
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
