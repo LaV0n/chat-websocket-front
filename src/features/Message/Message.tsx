@@ -5,10 +5,11 @@ import React from "react";
 type MessagePropsType = {
     messageData: MessageType
     isOwner: boolean
+    avatar:string
 }
 
 
-export const Message = ({messageData, isOwner}: MessagePropsType) => {
+export const Message = ({messageData, isOwner,avatar}: MessagePropsType) => {
     return (
         <div className={styles.block} style={isOwner? {paddingLeft:' calc(100% - 400px)'}:{}}>
             {isOwner &&
@@ -17,7 +18,7 @@ export const Message = ({messageData, isOwner}: MessagePropsType) => {
                 </div>
             }
             <div className={styles.user}>
-                <img src={'https://cdn-icons-png.flaticon.com/512/149/149071.png'} alt={'0'}/>
+                <img src={avatar} alt={'0'}/>
                 <span>{messageData.user}</span>
             </div>
             {!isOwner &&
