@@ -1,11 +1,12 @@
 import React, {KeyboardEvent, useEffect, useState} from 'react';
 import socketIo from 'socket.io-client';
-import './App.css';
+import './App.scss';
+import {Message} from "./features/Message/Message";
 
 const socket = socketIo("http://localhost:3003/", {
     withCredentials: true,
 });
-type MessageType = {
+export type MessageType = {
     message: string
     user: string
 }
@@ -73,11 +74,7 @@ function App() {
                 <div className='messages'>
                     <div className='block' id={'block'}>
                         {messages.map((m, index) =>
-                            <div key={index} className={'message'}>
-                                <span>{m.user}----</span>
-                                {m.message}
-                                <hr/>
-                            </div>
+                            <Message messageData={m} isOwner={m.user===user} key={index}/>
                         )}
                     </div>
                     <div className='sendArea'>
