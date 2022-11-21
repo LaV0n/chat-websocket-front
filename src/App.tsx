@@ -11,7 +11,8 @@ const socket = socketIo("http://localhost:3003/", {
 export type MessageType = {
     message: string
     user: string
-    avatar:string
+    avatar: string
+    userId:string
 }
 
 
@@ -20,16 +21,17 @@ function App() {
     const [text, setText] = useState('')
     const [user, setUser] = useState<string>('')
     const [avatar, setAvatar] = useState<string>(Avatars.anonymous)
+    const userId=socket.id
 
     const scrollDown = () => {
         const elem = document.getElementById('block');
         if (elem) {
-            elem.scrollTop = elem.scrollHeight;
+           setTimeout(()=> elem.scrollTop = elem.scrollHeight,1000);
         }
     }
 
     const messageHandler = () => {
-        let msg = {message: text, user,avatar} as MessageType
+        let msg = {message: text, user, avatar,userId} as MessageType
         socket.emit('send-message', msg)
         setMessages([...messages, msg])
         setText('')
@@ -44,11 +46,8 @@ function App() {
 
     useEffect(() => {
         socket.on('receive-message', (msg: MessageType) => {
-            console.log(msg.message)
-            console.log('your id' + socket.id)
             setMessages([...messages, msg])
         });
-
     })
 
     scrollDown()
@@ -67,7 +66,7 @@ function App() {
                     <div className={styles.block} id={'block'}>
                         {messages.map((m, index) =>
                             <Message messageData={m}
-                                     isOwner={m.user === user}
+                                     isOwner={m.userId === userId}
                                      key={index}
                                      avatar={m.avatar}/>
                         )}
