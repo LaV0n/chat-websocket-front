@@ -39,6 +39,15 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 20px;
+      .messagesHidden{
+        width: 64%;
+        height: 600px;
+        border-radius: 10px;
+        filter: blur(5px);
+        z-index: 3;
+        background-color: rgba(248, 248, 248, 0.68);
+        position: absolute;
+      }
 
       .block {
         width: 100%;

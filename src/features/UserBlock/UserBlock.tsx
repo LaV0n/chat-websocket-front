@@ -9,12 +9,14 @@ type UserBlocktype = {
     setUser: (value: string) => void
     setAvatar: (value: string) => void
     avatar: string
+    editUser:boolean
+    setEditUser:(value:boolean)=>void
 }
 
-export const UserBlock = ({user, setUser, avatar, setAvatar}: UserBlocktype) => {
+export const UserBlock = ({user, setUser, avatar, setAvatar,editUser,setEditUser}: UserBlocktype) => {
 
     const [value, setValue] = useState<string>('')
-    const [editUser, setEditUser] = useState<boolean>(false)
+
 
     const setUserHandler = () => {
         setUser(value)

@@ -1,0 +1,24 @@
+.container{
+  border: 1px solid black;
+  width: 90%;
+  height: 100%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .roomBlock{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    input{
+      width: 100%;
+    }
+  }
+  .roomsList{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap:5px;
+  }
+}
