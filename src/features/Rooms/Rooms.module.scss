@@ -1,4 +1,4 @@
-.container{
+.container {
   border: 1px solid black;
   width: 90%;
   height: 100%;
@@ -6,19 +6,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .roomBlock{
+
+  .roomBlock {
     width: 90%;
     display: flex;
     flex-direction: row;
-    input{
+
+    input {
       width: 100%;
     }
   }
-  .roomsList{
+
+  .roomsList {
     padding: 10px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap:5px;
+    gap: 5px;
+    .roomPanel{
+      width: 90%;
+      margin: 0 5px;
+      display: flex;
+      flex-direction: row;
+      gap:5px;
+      .roomButton{
+        border: none;
+        width: 100%;
+        padding: 5px 10px;
+        font-size: 14px;
+        color: white;
+        border-radius: 5px;
+      }
+      button{
+        border: 1px solid rgba(0, 0, 0, 0.27);
+        border-radius: 15px;
+        width: 32px;
+        height: 26px;
+      }
+    }
+
   }
 }

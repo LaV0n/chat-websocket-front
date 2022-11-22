@@ -17,6 +17,7 @@ type DialogType = {
 export const Dialog = ({editUser, user, avatar, userId, socket, activeRoom, messages, setMessages}: DialogType) => {
 
     const [text, setText] = useState('')
+    const [users, setUsers] = useState([])
 
     const enterPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === 'Enter') {
@@ -37,12 +38,14 @@ export const Dialog = ({editUser, user, avatar, userId, socket, activeRoom, mess
         setText('')
     }
 
-
     scrollDown()
 
     return (
         <div className={styles.messages}>
             {!editUser && <div className={styles.messagesHidden}></div>}
+            <div className={styles.usersPanel}>
+             users
+            </div>
             <div className={styles.block} id={'block'}>
                 {messages.filter(m => m.room === activeRoom).map((m, index) =>
                     <Message messageData={m}

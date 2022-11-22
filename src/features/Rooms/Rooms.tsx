@@ -4,12 +4,12 @@ import {useState} from "react";
 type RoomsType = {
     rooms: string[]
     setRooms: (value: string[]) => void
-    setActiveRoom:(value:string)=>void
-    activeRoom:string
-    socket:any
+    setActiveRoom: (value: string) => void
+    activeRoom: string
+    socket: any
 }
 
-export const Rooms = ({rooms, setRooms,setActiveRoom,activeRoom,socket}: RoomsType) => {
+export const Rooms = ({rooms, setRooms, setActiveRoom, activeRoom, socket}: RoomsType) => {
 
     const [value, setValue] = useState('')
 
@@ -18,9 +18,16 @@ export const Rooms = ({rooms, setRooms,setActiveRoom,activeRoom,socket}: RoomsTy
         setValue('')
     }
 
-    const openRoomHandler=  (room:string)=>{
+    const openRoomHandler = (room: string) => {
         setActiveRoom(room)
-         socket.emit('join-room',room)
+        socket.emit('join-room', room)
+    }
+
+    const deleteRoomHandler=(room:string)=>{
+        if(room===activeRoom){
+            setActiveRoom('general')
+        }
+        setRooms([...rooms.filter(r=>r!==room)])
     }
 
     return (
@@ -31,11 +38,17 @@ export const Rooms = ({rooms, setRooms,setActiveRoom,activeRoom,socket}: RoomsTy
                 <button onClick={createRoomHandler}>+</button>
             </div>
             <div className={styles.roomsList}>
-                {rooms.map((r,index)=>
-                    <button key={index}
-                            onClick={()=>openRoomHandler(r)}
-                    style={activeRoom===r?{backgroundColor:'green'}:{backgroundColor:'grey'}}>
-                        {r}</button>
+                {rooms.map((r, index) =>
+                    <div key={index} className={styles.roomPanel}>
+                    <button onClick={() => openRoomHandler(r)}
+                            className={styles.roomButton}
+                            style={activeRoom === r
+                                ? {backgroundColor: 'rgba(0, 128, 0, 0.7)'}
+                                : {backgroundColor: 'rgba(87, 87, 87, 0.46)'}}>
+                        {r}
+                    </button>
+                        {r!=='general' && <button onClick={()=>deleteRoomHandler(r)}>x</button> }
+                    </div>
                 )}
             </div>
         </div>
