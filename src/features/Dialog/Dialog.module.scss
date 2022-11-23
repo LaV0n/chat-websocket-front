@@ -1,20 +1,22 @@
 .messages {
   width: 80%;
   height: 600px;
-  border: 1px solid black;
+  border: 1px solid var(--secondColor);
   border-radius: 10px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+  background-color: var(--mainColor);
   .messagesHidden{
+    margin: 0;
     width: 64%;
-    height: 600px;
+    height: 65%;
     border-radius: 10px;
-    filter: blur(5px);
+    filter: blur(2px);
     z-index: 3;
-    background-color: rgba(248, 248, 248, 0.68);
+    background-color: rgba(18, 22, 25, 0.7);
     position: absolute;
   }
 
@@ -33,13 +35,13 @@
     flex-direction: row;
     gap: 20px;
 
-    textarea {
+    input {
       width: 100%;
       background-color: rgba(89, 88, 88, 0.09);
       font-size: 18px;
-      padding-left: 15px;
-      padding-top: 10px;
+      padding: 10px 15px;
       border-radius: 10px;
+      color: var(--textMainColor);
     }
 
     button {
@@ -47,8 +49,11 @@
       border-radius: 10px;
       border: none;
       font-size: 25px;
-      background-color: rgba(154, 205, 50, 0.66);
-      color: white;
+      background-color:var(--thirdColor);
+      color: var(--textMainColor);
+      &:disabled{
+        background-color:var(--secondColor);
+      }
     }
   }
 }

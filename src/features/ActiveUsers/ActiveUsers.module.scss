@@ -1,5 +1,5 @@
 .usersPanel{
-  border: 1px solid rgba(0, 0, 0, 0.21);
+  border: 1px solid var(--secondColor);
   width: 80%;
   height: 30%;
   border-radius: 10px;
@@ -11,7 +11,7 @@
   overflow: auto;
   overflow-x: hidden;
   legend{
-    color: rgba(0, 0, 0, 0.45);
+    color: var(--secondColor);
     font-size: 10px;
     text-align: center;
   }
@@ -20,7 +20,7 @@
     border-radius: 20px;
     width: 90%;
     padding: 0 10px;
-    background-color: rgba(20, 20, 241, 0.35);
-    color: white;
+    background-color: var(--secondColor);
+    color: var(--textMainColor);
   }
 }

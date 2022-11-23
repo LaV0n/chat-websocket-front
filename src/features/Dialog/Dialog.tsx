@@ -18,8 +18,8 @@ export const Dialog = ({editUser, user, avatar, userId, socket, activeRoom, mess
 
     const [text, setText] = useState('')
 
-    const enterPressHandler = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-        if (event.key === 'Enter') {
+    const enterPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter' && text.length!==0) {
             messageHandler()
         }
     }
@@ -51,12 +51,13 @@ export const Dialog = ({editUser, user, avatar, userId, socket, activeRoom, mess
                 )}
             </div>
             <div className={styles.sendArea}>
-                    <textarea value={text}
+                    <input value={text}
                               onChange={(e) => setText(e.currentTarget.value)}
                               onKeyDown={enterPressHandler}>
 
-                    </textarea>
+                    </input>
                 <button onClick={messageHandler}
+                        disabled={text.length===0}
                 >send
                 </button>
             </div>

@@ -13,7 +13,7 @@ export const Message = ({messageData, isOwner,avatar}: MessagePropsType) => {
     return (
         <div className={styles.block} style={isOwner? {paddingLeft:' calc(100% - 400px)'}:{}}>
             {isOwner &&
-                <div className={styles.message} style={{backgroundColor: 'rgba(100, 118, 232, 0.63)'}}>
+                <div className={styles.owner} >
                     {messageData.message}
                 </div>
             }
@@ -22,7 +22,7 @@ export const Message = ({messageData, isOwner,avatar}: MessagePropsType) => {
                 <span>{messageData.user}</span>
             </div>
             {!isOwner &&
-                <div className={styles.message} style={{backgroundColor: 'rgba(157,222,124,0.47)'} }>
+                <div className={styles.userMessage} >
                     {messageData.message}
                 </div>
             }

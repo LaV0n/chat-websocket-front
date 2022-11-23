@@ -1,5 +1,5 @@
 .container {
-  border: 1px solid rgba(0, 0, 0, 0.21);
+  border: 1px solid var(--secondColor);
   border-radius: 10px;
   width: 80%;
   height:30%;
@@ -10,7 +10,7 @@
   overflow: auto;
   overflow-x: hidden;
   legend{
-    color: rgba(0, 0, 0, 0.45);
+    color: var(--secondColor);
     font-size: 10px;
     text-align: center;
   }
@@ -22,6 +22,13 @@
 
     input {
       width: 100%;
+      color: var(--textMainColor);
+      background-color: rgba(89, 88, 88, 0.09);
+    }
+    button{
+      background-color: var(--fourthColor);
+      border: none;
+      cursor: pointer;
     }
   }
 
@@ -45,12 +52,15 @@
         font-size: 14px;
         color: white;
         border-radius: 5px;
+        cursor: pointer;
       }
       button{
-        border: 1px solid rgba(0, 0, 0, 0.27);
+        border: none;
         border-radius: 15px;
         width: 32px;
         height: 26px;
+        background-color: var(--fourthColor);
+        cursor: pointer;
       }
     }
 

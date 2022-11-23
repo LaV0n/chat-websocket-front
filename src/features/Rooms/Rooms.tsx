@@ -35,7 +35,7 @@ export const Rooms = ({rooms, setRooms, setActiveRoom, activeRoom, socket}: Room
             <legend>ROOMS</legend>
             <div className={styles.roomBlock}>
                 <input value={value} onChange={(e) => setValue(e.currentTarget.value)}/>
-                <button onClick={createRoomHandler}>+</button>
+                <button onClick={createRoomHandler} disabled={value.length===0}>+</button>
             </div>
             <div className={styles.roomsList}>
                 {rooms.map((r, index) =>
@@ -43,8 +43,8 @@ export const Rooms = ({rooms, setRooms, setActiveRoom, activeRoom, socket}: Room
                     <button onClick={() => openRoomHandler(r)}
                             className={styles.roomButton}
                             style={activeRoom === r
-                                ? {backgroundColor: 'rgba(0, 128, 0, 0.7)'}
-                                : {backgroundColor: 'rgba(87, 87, 87, 0.46)'}}>
+                                ? {backgroundColor: 'var(--thirdColor)'}
+                                : {backgroundColor: 'var(--secondColor)'}}>
                         {r}
                     </button>
                         {r!=='general' && <button onClick={()=>deleteRoomHandler(r)}>x</button> }
