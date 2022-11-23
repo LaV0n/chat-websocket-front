@@ -5,6 +5,7 @@ import {UserBlock} from "./features/UserBlock/UserBlock";
 import {Avatars} from "./common/Avatars";
 import {Rooms} from "./features/Rooms/Rooms";
 import {Dialog} from "./features/Dialog/Dialog";
+import {ActiveUsers} from "./features/ActiveUsers/ActiveUsers";
 
 const socket = socketIo("http://localhost:3003/", {
     withCredentials: true,
@@ -26,6 +27,7 @@ function App() {
     const [avatar, setAvatar] = useState<string>(Avatars.anonymous)
     const [rooms, setRooms] = useState<string[]>(['general'])
     const [activeRoom, setActiveRoom] = useState('general')
+    const [users, setUsers] = useState<string[]>([])
     const userId = socket.id
 
     const getMessage = () => {
@@ -33,11 +35,27 @@ function App() {
             setMessages([...messages, msg])
             console.log(socket.id)
         });
+        socket.on('new-user', (data: string[]) => {
+            setUsers([...data])
+            console.log(users.length)
+        })
+    }
+
+    const newUserConnected = (user: string) => {
+        socket.emit("new-user", user);
+    };
+    const disconnectUser = () => {
+        socket.on('user-disconnect', (user) => {
+            setUsers([...users.filter(u => u !== user)])
+        })
     }
 
     useEffect(() => {
         getMessage()
+        disconnectUser()
     })
+
+
 
     return (
         <div className={styles.App}>
@@ -48,7 +66,11 @@ function App() {
                                setAvatar={setAvatar}
                                avatar={avatar}
                                editUser={editUser}
-                               setEditUser={setEditUser}/>
+                               setEditUser={setEditUser}
+                               newUserConnected={newUserConnected}
+                               disconnectUser={disconnectUser}
+                               socket={socket}/>
+                    <ActiveUsers users={users}/>
                     <Rooms rooms={rooms}
                            setRooms={setRooms}
                            setActiveRoom={setActiveRoom}

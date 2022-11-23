@@ -31,8 +31,8 @@ export const Rooms = ({rooms, setRooms, setActiveRoom, activeRoom, socket}: Room
     }
 
     return (
-        <div className={styles.container}>
-            <h4>ROOMS</h4>
+        <fieldset className={styles.container}>
+            <legend>ROOMS</legend>
             <div className={styles.roomBlock}>
                 <input value={value} onChange={(e) => setValue(e.currentTarget.value)}/>
                 <button onClick={createRoomHandler}>+</button>
@@ -51,6 +51,6 @@ export const Rooms = ({rooms, setRooms, setActiveRoom, activeRoom, socket}: Room
                     </div>
                 )}
             </div>
-        </div>
+        </fieldset>
     )
 }

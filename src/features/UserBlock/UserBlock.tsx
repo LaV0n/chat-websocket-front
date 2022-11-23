@@ -11,23 +11,32 @@ type UserBlocktype = {
     avatar: string
     editUser:boolean
     setEditUser:(value:boolean)=>void
+    newUserConnected:(value:string)=>void
+    disconnectUser:()=>void
+    socket:any
 }
 
-export const UserBlock = ({user, setUser, avatar, setAvatar,editUser,setEditUser}: UserBlocktype) => {
+export const UserBlock = ({user, setUser, avatar, setAvatar,editUser,socket,setEditUser,newUserConnected}: UserBlocktype) => {
 
     const [value, setValue] = useState<string>('')
-
 
     const setUserHandler = () => {
         setUser(value)
         setValue('')
         setEditUser(true)
+        newUserConnected(value)
+        socket.connect()
+    }
+
+    const setEditModeHandler=()=>{
+        socket.disconnect()
+        setEditUser(false)
     }
 
     return (
         <div>
             {editUser
-                ? <div onDoubleClick={() => setEditUser(false)}
+                ? <div onDoubleClick={setEditModeHandler }
                        className={styles.user}>
                     <img src={avatar} alt={'0'}/>
                     {user}

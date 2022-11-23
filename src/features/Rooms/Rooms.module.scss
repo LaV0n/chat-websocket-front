@@ -1,11 +1,19 @@
 .container {
-  border: 1px solid black;
-  width: 90%;
-  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  border-radius: 10px;
+  width: 80%;
+  height:30%;
   margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
+  overflow-x: hidden;
+  legend{
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 10px;
+    text-align: center;
+  }
 
   .roomBlock {
     width: 90%;
@@ -19,7 +27,7 @@
 
   .roomsList {
     padding: 10px;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
