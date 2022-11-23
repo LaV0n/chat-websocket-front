@@ -17,6 +17,10 @@ export type MessageType = {
     userId: string
     room: string
 }
+export type UserDataType = {
+    name: string
+    id: string
+}
 
 
 function App() {
@@ -27,7 +31,7 @@ function App() {
     const [avatar, setAvatar] = useState<string>(Avatars.anonymous)
     const [rooms, setRooms] = useState<string[]>(['general'])
     const [activeRoom, setActiveRoom] = useState('general')
-    const [users, setUsers] = useState<string[]>([])
+    const [users, setUsers] = useState<UserDataType[]>([])
     const userId = socket.id
 
     const getMessage = () => {
@@ -35,26 +39,35 @@ function App() {
             setMessages([...messages, msg])
             console.log(socket.id)
         });
-        socket.on('new-user', (data: string[]) => {
+        socket.on('new-user', (data: UserDataType[]) => {
             setUsers([...data])
             console.log(users.length)
         })
+
     }
 
     const newUserConnected = (user: string) => {
         socket.emit("new-user", user);
     };
     const disconnectUser = () => {
-        socket.on('user-disconnect', (user) => {
-            setUsers([...users.filter(u => u !== user)])
+        socket.on('user-disconnect', (userID) => {
+            setUsers([...users.filter(u => u.id !== userID)])
         })
     }
+    const privateMessageCheck = () => {
+        socket.on("invite", (room) => {
+            socket.emit('join-room', room)
+            setRooms([...rooms, room])
+            console.log('room-', room)
+        });
+    }
+
 
     useEffect(() => {
         getMessage()
         disconnectUser()
+        privateMessageCheck()
     })
-
 
 
     return (
@@ -70,7 +83,11 @@ function App() {
                                newUserConnected={newUserConnected}
                                disconnectUser={disconnectUser}
                                socket={socket}/>
-                    <ActiveUsers users={users}/>
+                    <ActiveUsers users={users}
+                                 setRooms={setRooms}
+                                 rooms={rooms}
+                                 socket={socket}
+                                 user={user}/>
                     <Rooms rooms={rooms}
                            setRooms={setRooms}
                            setActiveRoom={setActiveRoom}
