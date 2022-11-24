@@ -23,15 +23,21 @@ export const ActiveUsers=({users,setRooms,rooms,socket,user}:ActiveUsersType)=>{
     }
 
     return(
-        <fieldset className={styles.usersPanel}>
+        <div className={styles.container}>
                 <legend>USERS ONLINE</legend>
-                {users.map(u =>
-                    <div key={u.id}
-                         className={styles.userName}
-                         onDoubleClick={()=>openPrivateMessages(u)}>
-                        {u.name}
-                    </div>)
-                }
-        </fieldset>
+                <div className={styles.usersPanel}>
+                    {users.map(u =>
+                        <div key={u.id}
+                             className={styles.userName}
+                             onDoubleClick={()=>openPrivateMessages(u)}>
+                            {u.name}
+                        </div>)
+                    }
+                </div>
+
+
+        </div>
+
+
     )
 }

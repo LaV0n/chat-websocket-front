@@ -31,7 +31,7 @@ export const Rooms = ({rooms, setRooms, setActiveRoom, activeRoom, socket}: Room
     }
 
     return (
-        <fieldset className={styles.container}>
+        <div className={styles.container}>
             <legend>ROOMS</legend>
             <div className={styles.roomBlock}>
                 <input value={value} onChange={(e) => setValue(e.currentTarget.value)}/>
@@ -41,7 +41,9 @@ export const Rooms = ({rooms, setRooms, setActiveRoom, activeRoom, socket}: Room
                 {rooms.map((r, index) =>
                     <div key={index} className={styles.roomPanel}>
                     <button onClick={() => openRoomHandler(r)}
-                            className={styles.roomButton}
+                            className={r==='general'
+                                ?styles.roomButtonGeneral
+                                :styles.roomButton}
                             style={activeRoom === r
                                 ? {backgroundColor: 'var(--thirdColor)'}
                                 : {backgroundColor: 'var(--secondColor)'}}>
@@ -51,6 +53,6 @@ export const Rooms = ({rooms, setRooms, setActiveRoom, activeRoom, socket}: Room
                     </div>
                 )}
             </div>
-        </fieldset>
+        </div>
     )
 }

@@ -1,26 +1,35 @@
-.usersPanel{
-  border: 1px solid var(--secondColor);
+.container{
   width: 80%;
+  border: 1px solid var(--secondColor);
   height: 30%;
   border-radius: 10px;
   padding: 5px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  justify-content: flex-start;
   overflow: auto;
   overflow-x: hidden;
+
   legend{
     color: var(--secondColor);
     font-size: 10px;
     text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+
   }
-  .userName{
-    border: none;
-    border-radius: 20px;
-    width: 90%;
-    padding: 0 10px;
-    background-color: var(--secondColor);
-    color: var(--textMainColor);
+  .usersPanel{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: flex-start;
+
+    .userName{
+      border: none;
+      border-radius: 20px;
+      width: 90%;
+      word-wrap: break-word;
+      padding: 0 10px;
+      background-color: var(--secondColor);
+      color: var(--textMainColor);
+    }
   }
 }

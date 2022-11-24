@@ -11,7 +11,7 @@ type MessagePropsType = {
 
 export const Message = ({messageData, isOwner,avatar}: MessagePropsType) => {
     return (
-        <div className={styles.block} style={isOwner? {paddingLeft:' calc(100% - 400px)'}:{}}>
+        <div className={styles.block} style={isOwner? {paddingLeft:' calc(100% - 500px)'}:{}}>
             {isOwner &&
                 <div className={styles.owner} >
                     {messageData.message}

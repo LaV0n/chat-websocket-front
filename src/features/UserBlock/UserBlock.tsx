@@ -34,12 +34,14 @@ export const UserBlock = ({user, setUser, avatar, setAvatar,editUser,socket,setE
     }
 
     return (
-        <div>
+        <div className={styles.container}>
             {editUser
                 ? <div onDoubleClick={setEditModeHandler }
                        className={styles.user}>
                     <img src={avatar} alt={'0'}/>
-                    {user}
+                    <div>
+                        {user}
+                    </div>
                 </div>
                 : <div className={styles.editBlock}>
                     <div className={styles.avatarsBlock}>
