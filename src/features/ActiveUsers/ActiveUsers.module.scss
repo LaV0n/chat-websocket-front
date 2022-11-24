@@ -1,3 +1,5 @@
+@import "../../common/sass";
+
 .container{
   width: 80%;
   border: 1px solid var(--secondColor);
@@ -6,6 +8,7 @@
   padding: 5px 10px;
   overflow: auto;
   overflow-x: hidden;
+  @include scrollbar();
 
   legend{
     color: var(--secondColor);
