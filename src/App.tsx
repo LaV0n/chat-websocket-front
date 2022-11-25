@@ -7,9 +7,9 @@ import {Rooms} from "./features/Rooms/Rooms";
 import {Dialog} from "./features/Dialog/Dialog";
 import {ActiveUsers} from "./features/ActiveUsers/ActiveUsers";
 
-const socket = socketIo("http://localhost:3003/", {
-    withCredentials: true,
-});
+const socket = socketIo("https://web-socket-back.herokuapp.com");
+//const socket = socketIo("http://localhost:3003");
+
 export type MessageType = {
     message: string
     user: string
@@ -37,11 +37,9 @@ function App() {
     const getMessage = () => {
         socket.on('receive-message', (msg: MessageType) => {
             setMessages([...messages, msg])
-            console.log(socket.id)
         });
         socket.on('new-user', (data: UserDataType[]) => {
             setUsers([...data])
-            console.log(users.length)
         })
 
     }
@@ -58,7 +56,6 @@ function App() {
         socket.on("invite", (room) => {
             socket.emit('join-room', room)
             setRooms([...rooms, room])
-            console.log('room-', room)
         });
     }
 
