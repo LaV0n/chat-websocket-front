@@ -7,8 +7,14 @@ import {Rooms} from "./features/Rooms/Rooms";
 import {Dialog} from "./features/Dialog/Dialog";
 import {ActiveUsers} from "./features/ActiveUsers/ActiveUsers";
 
-const socket = socketIo("https://web-socket-back.herokuapp.com");
-//const socket = socketIo("http://localhost:3003");
+/*const socket = socketIo("http://localhost:3003",{
+    transports: [ 'polling'],
+});*/
+//const socket = socketIo("https://web-socket-back.herokuapp.com");
+const socket = socketIo("https://websocket-server-lavon.glitch.me", {
+    transports: ['polling']
+});
+
 
 export type MessageType = {
     message: string
