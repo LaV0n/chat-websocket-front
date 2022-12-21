@@ -14,7 +14,8 @@ export const ActiveUsers=({users,setRooms,rooms,socket,user}:ActiveUsersType)=>{
 
     const openPrivateMessages=(u:UserDataType)=>{
         let room=`Private ${u.name}-${user}`
-        if(rooms.indexOf(room)===-1){
+        let roomReverse=`Private ${user}-${u.name}`
+        if(rooms.indexOf(room)===-1 && rooms.indexOf(roomReverse)===-1 && u.name!==user){
             setRooms([...rooms,room])
         }
         let data={userID:u.id,room:room}
@@ -31,7 +32,9 @@ export const ActiveUsers=({users,setRooms,rooms,socket,user}:ActiveUsersType)=>{
                              className={styles.userName}
                              onDoubleClick={()=>openPrivateMessages(u)}>
                             {u.name}
-                            <span onClick={()=>openPrivateMessages(u)}>+</span>
+                            {u.name!==user &&
+                                <span onClick={()=>openPrivateMessages(u)}>+</span>
+                            }
                         </div>)
                     }
                 </div>
