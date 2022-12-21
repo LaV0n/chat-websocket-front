@@ -11,6 +11,45 @@
   justify-content: space-between;
   gap: 20px;
   background-color: var(--mainColor);
+  @media screen and (max-width: $medium) {
+    width: 70%;
+  }
+  @media screen and (max-width: $small) {
+    width: 99%;
+    padding: 0;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    transition: top;
+  }
+  .userPanel{
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 10%;
+    border: 1px solid var(--secondColor);
+    @media screen and (max-width: $small) {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+    }
+    .avatar{
+      width: 70px;
+      height: 70px;
+      border-radius: 35px;
+      border: 1px solid var(--fourthColor);
+    }
+    .name{
+      color: var(--textMainColor);
+      font-size: 40px;
+    }
+    .menuIcon{
+      width: 70px;
+      height: 70px;
+    }
+  }
   .messagesHidden{
     margin: 0;
     width: 64%;
@@ -20,6 +59,12 @@
     z-index: 3;
     background-color: rgba(18, 22, 25, 0.7);
     position: absolute;
+    @media screen and (max-width: $medium) {
+      width: 70%;
+    }
+    @media screen and (max-width: $small) {
+      display: none;
+    }
   }
 
   .block {

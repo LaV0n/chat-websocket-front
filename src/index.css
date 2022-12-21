@@ -15,7 +15,7 @@ code {
   --mainColor: #121619;
   --secondColor: #2D4739;
   --thirdColor: #09814A;
-  --fourthColor: #BCB382;
+  --fourthColor: rgba(188, 179, 130, 0.5);
   --fifthColor: #E5C687;
   --textMainColor: rgb(255, 255, 255);
   --textSecondColor: rgb(0, 0, 0);

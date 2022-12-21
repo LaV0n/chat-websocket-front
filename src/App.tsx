@@ -10,7 +10,9 @@ import {ActiveUsers} from "./features/ActiveUsers/ActiveUsers";
 /*const socket = socketIo("http://localhost:3003",{
     transports: [ 'polling'],
 });*/
+
 //const socket = socketIo("https://web-socket-back.herokuapp.com");
+
 const socket = socketIo("https://websocket-server-lavon.glitch.me", {
     transports: ['polling']
 });
@@ -39,6 +41,7 @@ function App() {
     const [activeRoom, setActiveRoom] = useState('general')
     const [users, setUsers] = useState<UserDataType[]>([])
     const userId = socket.id
+    const [menu, setMenu] = useState(true)
 
     const getMessage = () => {
         socket.on('receive-message', (msg: MessageType) => {
@@ -64,6 +67,9 @@ function App() {
             setRooms([...rooms, room])
         });
     }
+    const closeMenuHandler = () => {
+        setTimeout(() => setMenu(false), 100)
+    }
 
 
     useEffect(() => {
@@ -76,7 +82,7 @@ function App() {
     return (
         <div className={styles.App}>
             <div className={styles.window}>
-                <div className={styles.userBlock}>
+                <div className={menu ? styles.userBlock : styles.userBlockClose}>
                     <UserBlock user={user}
                                setUser={setUser}
                                setAvatar={setAvatar}
@@ -97,6 +103,10 @@ function App() {
                            activeRoom={activeRoom}
                            socket={socket}/>
                 </div>
+                <div className={menu ? styles.closeZone : styles.closeZoneClose}
+                     onClick={closeMenuHandler}>
+                    <button>X</button>
+                </div>
                 <Dialog editUser={editUser}
                         user={user}
                         avatar={avatar}
@@ -104,7 +114,8 @@ function App() {
                         socket={socket}
                         activeRoom={activeRoom}
                         messages={messages}
-                        setMessages={setMessages}/>
+                        setMessages={setMessages}
+                        setMenu={setMenu}/>
             </div>
         </div>
     );
