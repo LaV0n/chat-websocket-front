@@ -27,11 +27,18 @@
       width: 100%;
       color: var(--textMainColor);
       background-color: rgba(89, 88, 88, 0.09);
+      @media screen and (max-width: $small) {
+        font-size: 20px;
+      }
     }
     button{
       background-color: var(--fourthColor);
       border: none;
       cursor: pointer;
+      @media screen and (max-width: $small) {
+        height: 100%;
+        font-size: 20px;
+      }
     }
   }
 
@@ -60,6 +67,10 @@
         border-radius: 5px;
         cursor: pointer;
         word-wrap: break-word;
+        @media screen and (max-width: $small) {
+
+          font-size: 20px;
+        }
 
       }
       .roomButton{

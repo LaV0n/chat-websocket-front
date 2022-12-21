@@ -31,11 +31,10 @@ export const ActiveUsers=({users,setRooms,rooms,socket,user}:ActiveUsersType)=>{
                              className={styles.userName}
                              onDoubleClick={()=>openPrivateMessages(u)}>
                             {u.name}
+                            <span onClick={()=>openPrivateMessages(u)}>+</span>
                         </div>)
                     }
                 </div>
-
-
         </div>
 
 

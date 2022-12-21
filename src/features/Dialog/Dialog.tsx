@@ -47,7 +47,7 @@ export const Dialog = ({editUser, user, avatar, userId, socket, activeRoom, mess
             <div className={styles.userPanel}>
                 <img src={avatar} alt="0" className={styles.avatar}/>
                 <div className={styles.name}>
-                    {user}
+                    {activeRoom}
                 </div>
                 <img src={menuIcon} alt="0"
                      className={styles.menuIcon}

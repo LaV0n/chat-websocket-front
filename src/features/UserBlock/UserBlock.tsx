@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {Avatars} from "../../common/Avatars";
 import {Simulate} from "react-dom/test-utils";
 import input = Simulate.input;
+import gearIcon from "../../assets/icons/icons8-settings-50.png"
 
 type UserBlocktype = {
     user: string
@@ -41,6 +42,9 @@ export const UserBlock = ({user, setUser, avatar, setAvatar,editUser,socket,setE
                     <img src={avatar} alt={'0'}/>
                     <div>
                         {user}
+                        <img src={gearIcon} alt="0"
+                             onClick={setEditModeHandler}
+                        className={styles.editIcon}/>
                     </div>
                 </div>
                 : <div className={styles.editBlock}>

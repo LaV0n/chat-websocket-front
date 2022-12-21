@@ -1,3 +1,5 @@
+@import 'src/common/sass';
+
 .container {
   width: 100%;
 
@@ -15,7 +17,10 @@
     div {
       width: 90%;
       word-wrap: break-word;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
     }
 
     img {
@@ -24,6 +29,15 @@
       border-radius: 50px;
       cursor: pointer;
     }
+    .editIcon{
+      display: none;
+      width: 30px;
+      height: 30px;
+      padding-left: 10px;
+      @media screen and (max-width: $small) {
+        display: flex;
+      }
+       }
   }
 
   .editBlock {
