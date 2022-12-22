@@ -13,7 +13,7 @@ code {
 }
 :root {
   --mainColor: #121619;
-  --secondColor: #2D4739;
+  --secondColor: rgb(45, 71, 57);
   --thirdColor: #09814A;
   --fourthColor: rgba(188, 179, 130, 0.5);
   --fifthColor: #E5C687;

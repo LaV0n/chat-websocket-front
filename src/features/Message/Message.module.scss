@@ -1,3 +1,5 @@
+@import "../../../src/common/sass";
+
 .block {
   width: 500px;
   display: flex;
@@ -6,6 +8,9 @@
   align-items: center;
   gap: 10px;
   right: 0;
+  @media screen and (max-width: $small) {
+max-width: 100%;
+  }
   .user {
     width: 100px;
     min-height: 100px;
@@ -30,7 +35,7 @@
   }
 
   .message {
-    width: 100%;
+    min-width: 70%;
     min-height: 40%;
     text-align: center;
     justify-content: center;

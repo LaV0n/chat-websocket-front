@@ -3,6 +3,7 @@ import {Message} from "../Message/Message";
 import React, {KeyboardEvent, useState} from "react";
 import {MessageType} from "../../App";
 import menuIcon from "../../assets/icons/icons8.png"
+import sendIcon from "../../assets/icons/icons8-email-send-64.png"
 
 type DialogType = {
     editUser: boolean
@@ -69,7 +70,13 @@ export const Dialog = ({editUser, user, avatar, userId, socket, activeRoom, mess
                     </input>
                 <button onClick={messageHandler}
                         disabled={text.length===0}
+                        className={styles.sendButton}
                 >send
+                </button>
+                <button onClick={messageHandler}
+                        disabled={text.length===0}
+                        className={styles.smallSendButton}
+                ><img src={sendIcon} alt='0'/>
                 </button>
             </div>
         </div>
