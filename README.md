@@ -1,6 +1,6 @@
 # Chat on socket io
 
-with own server
+with own server and adaptive responsive disign
 
 https://lav0n.github.io/chat-websocket-front/
 # 
@@ -20,4 +20,9 @@ You can create a unique group
 For a private message you must double click on user name in the list
 
 ![](https://github.com/LaV0n/chat-websocket-front/blob/master/src/assets/img/4.png)
+#
+Mobile disign
 
+![](https://github.com/LaV0n/chat-websocket-front/blob/master/src/assets/img/5.png)
+
+![](https://github.com/LaV0n/chat-websocket-front/blob/master/src/assets/img/6.png)
