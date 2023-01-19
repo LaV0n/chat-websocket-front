@@ -2,9 +2,9 @@
 
 with own server and adaptive responsive disign
 
-Stack:  FrontEnd *React/TypeScript*
-
-        BackEnd *Node/Express*
+Stack: 
+FrontEnd *React/TypeScript*
+BackEnd *Node/Express*        
 
 [link](https://lav0n.github.io/chat-websocket-front/)
 ## Start screen. 
